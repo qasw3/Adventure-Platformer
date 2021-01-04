@@ -7919,7 +7919,14 @@ function game(){
 }
 draw= function() {
     try{
-    this[scene]();
+    switch(scene){
+         case "game":
+              game();
+              break;
+         case "load":
+              load();
+              break;
+    }
     mouseIsClicked=false;
     keyIsPressed=false;
     }
