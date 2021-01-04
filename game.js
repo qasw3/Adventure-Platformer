@@ -1,3 +1,6 @@
+var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(600, 600); 
 var scene="load";
 var difficulty=1;//0-10
 var keys=[];
@@ -7954,4 +7957,6 @@ function keyPressed(){
 }
 function keyReleased(){
     keys[keyCode]=false;
+}
+     }
 }
