@@ -8666,7 +8666,7 @@ draw= function() {
         println(e);
     }
 };
-function mouseReleased(){
+mouseReleased=function(){
     mouseIsClicked=true;
 }
 keyPressed=function(){
@@ -8699,7 +8699,7 @@ keyPressed=function(){
        }
        keyIsPressed=true;
 }
-function keyReleased(){
+keyReleased=function(){
     keys[keyCode]=false;
 }
 //}
