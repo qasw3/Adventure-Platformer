@@ -8670,7 +8670,7 @@ mouseReleased=function(){
     mouseIsClicked=true;
 }
 keyPressed=function(){
-     println(keyCode);
+    // println(keyCode);
     keys[keyCode]=true;
        if(keyCode===69&&!chst&&!fnc&&!crush&&!anv&&!found&&!brew){
            inv=!inv;
