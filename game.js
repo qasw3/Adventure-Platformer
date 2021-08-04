@@ -8395,7 +8395,14 @@ function game(){
 draw= function() {
     try{
         if(save_load===0){
-    this[scene]();
+          switch(scene){
+               case "game":
+                    game();
+                    break;
+               case "load":
+                    load();
+                    break;
+          }
         }
         else{
             switch(save_load){
@@ -8656,7 +8663,7 @@ draw= function() {
     keyIsPressed=false;
     }
     catch(e){
-        //println(e);
+        println(e);
     }
 };
 function mouseReleased(){
