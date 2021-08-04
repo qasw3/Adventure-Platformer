@@ -8669,7 +8669,7 @@ draw= function() {
 function mouseReleased(){
     mouseIsClicked=true;
 }
-function keyPressed(){
+keyPressed=function(){
      println(keyCode);
     keys[keyCode]=true;
        if(keyCode===69&&!chst&&!fnc&&!crush&&!anv&&!found&&!brew){
