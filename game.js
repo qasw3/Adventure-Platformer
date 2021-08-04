@@ -8670,6 +8670,7 @@ function mouseReleased(){
     mouseIsClicked=true;
 }
 function keyPressed(){
+     println(keyCode);
     keys[keyCode]=true;
        if(keyCode===69&&!chst&&!fnc&&!crush&&!anv&&!found&&!brew){
            inv=!inv;
