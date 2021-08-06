@@ -1,8 +1,21 @@
 var sketchProc = function(processingInstance) {
      with (processingInstance) {
         size(600, 600); 
-
-
+if(localStorage.getItem("inv_Save")===null){
+	localStorage.setItem("inv_Save","");
+}
+if(localStorage.getItem("tlb_Save")===null){
+	localStorage.setItem("tlb_Save","");
+}
+if(localStorage.getItem("ts_Save")===null){
+	localStorage.setItem("ts_Save","");
+}
+if(localStorage.getItem("xy_Save")===null){
+	localStorage.setItem("xy_Save","");
+}
+if(localStorage.getItem("world_Save")===null){
+	localStorage.setItem("world_Save","");
+}
 var difficulty=5;//0-10
 //{
 var sheaths=[
@@ -120,13 +133,396 @@ var sheaths=[
         },
     ];
     //}//Important stuff
+//{
+    Array.prototype.equals=function(array){
+        if(this.length!==array.length){
+            return false;
+        }
+        for(var i=0;i<this.length;i++){
+            if(this[i]!==array[i]){
+                return false;
+            }
+        }
+        return true;
+    };var stringArray=function(input){
+    var out=[];
+    var i=1;
+    var inSeg=-1;
+    var layer=0;
+    while(i<input.length-1){
+        var g=false;
+        if(inSeg===-1){
+            var q=i;
+            var f="";
+            
+            if(input[i]==="["){
+                var n=0;
+                    while(q<input.length){
+                        if(input[q]==="["){
+                            n++;
+                        }
+                        else if(input[q]==="]"){
+                            n--;
+                        }
+                        q++;
+                        if(n===0){
+                            break;
+                        }
+                    }
+                }
+            else if(input[i]==="{"){
+                var n=0;
+                    while(q<input.length){
+                        if(input[q]==="{"){
+                            n++;
+                        }
+                        else if(input[q]==="}"){
+                            n--;
+                        }
+                        q++;
+                        if(n===0){
+                            break;
+                        }
+                    }
+                }
+                else{
+            while(input[q]!==","&&q<input.length&&input[q]!=="]"){
+                
+                q++;
+            }
+                }
+            for(var j=i;j<q;j++){
+                f+=input[j];
+            }
+            out.push(f);
+            i=q;
+        
+        }
+        if(g===false){
+        i++;
+        }
+    }
+    return out;
+};
+    var roundTo=function(num,digit){
+    if(digit===0){
+        return num;
+    }
+    else{
+        var n1=num*pow(10,digit);
+        var n2;
+        if(n1>=floor(n1)+0.5){
+            n2=ceil(n1);
+        }
+        else{
+            n2=floor(n1);
+        }
+        var n=n2/pow(10,digit);
+        if((n-floor(n)).toString().length>digit){
+            //println(0);
+           return n;
+        }
+        //println(pow(10,-digit));
+        return n;
+    }
+};
+    var contract=function(number){
+        if(number>=0){
+        return number<1000?number:number<1000000?roundTo(number/1000,1)+"K":number<1000000000?roundTo(number/1000000,1)+"M":roundTo(number/1000000000,1)+"B";
+        }
+        else{
+            return -number<1000?number:-number<1000000?roundTo(number/1000,1)+"K":-number<1000000000?roundTo(number/1000000,1)+"M":roundTo(number/1000000000,1)+"B";
+        }
+        
+    };
+    String.prototype.toTitleCase=function(){
+        var f=this.split(" ");
+        for(var i=0;i<f.length;i++){
+        f[i]=f[i][0].toUpperCase()+f[i].split("").splice(1,f[i].length-1).join("");
+        }
+    return f.join(" ");
+};
+var parse=function(p){
+    if(parseFloat(p)){
+        return parseFloat(p);
+    }
+    else if(p==="true"){
+        return true;
+    }
+    else if(p==="false"){
+        return false;
+    }
+    else if(p[0]==="["&&(p[p.length-1]==="]"||p[p.length-2]==="]")){
+        return stringArray(p);
+    }
+    else{
+        return p.toString();
+    }
+};
+var stringObject=function(input){
+    var out={};
+    var i=1;
+    var labeling=true;
+    var label="";
+        var value="";
+    while(i!=="}"){
+        var q=i;
+        
+        if(labeling){
+        while(input[q]!==":"){
+            label+=input[q];
+            q++;
+        }
+        if(input[q]===":"){
+            labeling=false;
+        }
+        }
+        else{
+            while(input[q]!==","&&input[q]!=="}"){
+                if(input[q]==="["){
+                    while(input[q]!=="]"){
+                        value+=input[q];
+            q++;
+                    }
+                }
+                else{
+            value+=input[q];
+            q++;
+                }
+        }
+        out[label]=parse(value);
+        label="";
+        value="";
+        if(input[q]===","){
+            labeling=true;
+        }
+        else if(input[q]==="}"){
+            break;
+        }
+        }
+        
+        i=q;
+        i++;
+        
+    }
+    return out;
+};
+    String.prototype.deQuote=function(){
+    var car=this;
+    if((this[0]==="\""&&this[this.length-1]==="\"")||(this[0]==="\'"&&this[this.length-1]==="\'")){
+        car=[];
+        for(var i=1;i<this.length-1;i++){
+            car.push(this[i]);
+        }
+        car=car.join("");
+    }
+    return car;
+};
+    var encryptData=function(input){
+    var car="";
+    var alphanumeric="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+={}[]|:;'<,>.? /-ΑΒΓΔΕΖΗΘΙͿΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ`";
+    alphanumeric["."]="\\";
+    var key=round(random(0,alphanumeric.length-10));
+    //var convert=function(inp){
+        if(typeof input=== typeof 0){
+            input=input.toString();
+            car="\"";
+            //println(floor(input/36));
+            for(var i=0;i<input.length;i++){
+                    car+=alphanumeric[alphanumeric.length-key-1-input[i]];
+                }
+            car+="~n~"+key+"\"";
+        }
+        else if(typeof input===typeof "a"){
+            car="\"";
+            key=round(random(0,alphanumeric.length-27));
+            for(var i=0;i<input.length;i++){
+                    for(var j=0;j<alphanumeric.length-1;j++){
+            if(alphanumeric[j]===input[i]){
+                    car+=j+key+"`";
+            }
+                }
+                }
+                car=car.split("");
+                car.splice(car.length-1,1);
+                car=car.join("");
+                car+="~s~"+key+"\"";
+        }
+        else if(typeof input===typeof true){
+            car='"'+alphanumeric[alphanumeric.length-key-1-input]+"~b~"+key+'"';
+        }
+        else if(input instanceof Array){
+            car+="[";
+            for(var i=0;i<input.length;i++){
+                car+=encryptData(input[i])+",";
+            }
+            car+="]";
+        }
+        else if(typeof input===typeof function(){}){
+            car="\"";
+                car+=encryptData(input.toString()+";").deQuote();
+            car+="\"";
+        }
+        else if(typeof input===typeof {}){
+            car+="{";
+            for(var i in input){
+                car+=encryptData(i)+":"+encryptData(input[i])+",";
+            }
+            car+="}";
+        }
+        //return inp;
+    //};'
+    //println(typeof input);
+    //input=carry;
+    return car;
+};
+    var decryptData=function(input){
+    var alphanumeric="`ΩΨΧΦΥΤΣΠΡΟΞΝΜΛΚͿΙΘΗΖΕΔΓΒΑ-/ ?.>,<';:|][}{=+_)(*&^%$#@!ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210";
+    var z;
+    var car="";
+    if(input instanceof Array){
+        car="[";
+        for(var i=0;i<input.length;i++){
+            car+=decryptData(input[i])+",";
+        }
+        car+="]";
+    }
+    else if(typeof input===typeof {}){
+            car+="{";
+            for(var i in input){
+                car+=decryptData(i)+":"+decryptData(input[i])+",";
+            }
+            car+="}";
+        }
+    else{
+        z=input.split("~");
+        if(z[1]==="n"){
+    input=z[0];
+    for(var i=0;i<input.length;i++){
+        if(input[i]+input[i+1]+input[i+2]+input[i+3]+input[i+4]+input[i+5]+input[i+6]+input[i+7]+input[i+8]+""==="undefined"){
+            i+=8;
+            car+=".";
+            continue;
+        }
+        for(var j=0;j<alphanumeric.length;j++){
+            if(alphanumeric[j]===input[i]){
+                    car+=j-z[2];
+            }
+                }
+    }
+    car=parseFloat(car);
+    }
+        else if(z[1]==="b"){
+        input=z[0];
+        for(var j=0;j<alphanumeric.length;j++){
+            if(alphanumeric[j]===input){
+                    car=j-z[2];
+            }
+                }
+        car=car===1?true:false;
+    }
+        else if(z[1]==="s"){
+        input=z[0];
+        var cars=z[0].split("`");
+        for(var i=0;i<cars.length;i++){
+            car+=alphanumeric[alphanumeric.length-(cars[i]-z[2]+1)];
+        }
+    }
+    }
+    
+    
+    //println(typeof car-0);
+    return car;
+    
+};
+    var start=function(){
+    this[["KAInfiniteLoopCount"]]=-Infinity;
+};
+    var neg=function(col){
+    return blendColor(color(255,255,255),col,SUBTRACT);
+};
+    var chooseRandom=function(array){
+    return array[floor(random(0,array.length))];
+};
+    Array.prototype.calcTotal=function(property,property2){
+    var g=0;
+    if(property2){
+        for(var i=0;i<this.length;i++){
+            if(this[i]&&this[i][property]){
+            g+=this[i][property][property2];
+            }
+        }
+    }
+    else if(property){
+        for(var i=0;i<this.length;i++){
+            if(this[i]){
+            g+=this[i][property];
+            }
+        }
+        
+    }
+    else{
+        for(var i=0;i<this.length;i++){
+            if(this[i]){
+            g+=this[i];
+            }
+        }
+    }
+    return g;
+};
+    Array.prototype.append=function(array){
+        if(array instanceof Array){
+            for(var i=0;i<array.length;i++){
+            this.push(array[i]);
+            }
+            return this;
+        }
+        else{
+            this.push(array);
+            return this;
+        }
+    };
+    start();
+//}//Utilities
 //Paste your save file below, replacing all five variables
 //Copy this entire code and paste at the top of the code
-var inv_Save=[];
-var tlb_Save=[];
-var ts_Save=[];
-var xy_Save=[];
-var world_Save=[];
+//println(localStorage.setItem("inv_Save",""));
+//println(stringArray(localStorage.getItem("ts_Save")));
+var inv_Save=(localStorage.getItem("inv_Save").length>0?stringArray(localStorage.getItem("inv_Save")):[]);
+for(var i=0;i<inv_Save.length;i++){
+	var v=stringArray(inv_Save[i]);
+	//println(v+":"+inv_Save[i]+" "+(typeof v));
+	inv_Save[i]=[parseFloat(v[0]),parseFloat(v[1])];
+}
+var tlb_Save=(localStorage.getItem("tlb_Save").length>0?stringArray(localStorage.getItem("tlb_Save")):[]);
+for(var i=0;i<tlb_Save.length;i++){
+	var v=stringArray(tlb_Save[i]);
+	//println(v+":"+inv_Save[i]+" "+(typeof v));
+	tlb_Save[i]=[parseFloat(v[0]),parseFloat(v[1])];
+}
+var ts_Save=(localStorage.getItem("ts_Save").length>0?stringArray(localStorage.getItem("ts_Save")):[]);
+for(var i=0;i<ts_Save.length;i++){
+		ts_Save[i]=stringObject(ts_Save[i]);
+		//println(ts_Save[i][j]);
+}
+var xy_Save=(localStorage.getItem("xy_Save").length>0?stringArray(localStorage.getItem("xy_Save")):[]);
+for(var i=0;i<xy_Save.length;i++){
+	xy_Save[i]=parseFloat(xy_Save[i]);
+}
+var world_Save=(localStorage.getItem("world_Save").length>0?stringArray(localStorage.getItem("world_Save")):[]);
+for(var i=0;i<world_Save.length;i++){
+	world_Save[i]=stringArray(world_Save[i]);
+	for(var j=0;j<world_Save[i].length;j++){
+		world_Save[i][j]=parse(world_Save[i][j]);
+		if(world_Save[i][j] instanceof Array){
+			world_Save[i][j][1]=stringArray(world_Save[i][j][1]);
+			for(var k=0;k<world_Save[i][j][1].length;k++){
+				world_Save[i][j][1][k]=stringArray(world_Save[i][j][1][k]);
+				world_Save[i][j][1][k]=[parse(world_Save[i][j][1][k][0]),parse(world_Save[i][j][1][k][1])];
+			}
+		}
+	}
+}
 //{
 var scene="load";
 
@@ -1561,278 +1957,7 @@ for(var i=0;i<50;i++){
     inventory[i]=[-1,0];
     }
 }
-//{
-    Array.prototype.equals=function(array){
-        if(this.length!==array.length){
-            return false;
-        }
-        for(var i=0;i<this.length;i++){
-            if(this[i]!==array[i]){
-                return false;
-            }
-        }
-        return true;
-    };
-    var stringArray=function(input){
-    var out=[];
-    var i=1;
-    var inSeg=-1;
-    var layer=0;
-    while(i<input.length-1){
-        var g=false;
-        if(inSeg===-1){
-            var q=i;
-            var f="";
-            
-            if(input[i]==="["){
-                var n=0;
-                    while(q<input.length){
-                        if(input[q]==="["){
-                            n++;
-                        }
-                        else if(input[q]==="]"){
-                            n--;
-                        }
-                        q++;
-                        if(n===0){
-                            break;
-                        }
-                    }
-                }
-                else{
-            while(input[q]!==","&&q<input.length&&input[q]!=="]"){
-                
-                q++;
-            }
-                }
-            for(var j=i;j<q;j++){
-                f+=input[j];
-            }
-            out.push(f);
-            i=q;
-        
-        }
-        if(g===false){
-        i++;
-        }
-    }
-    return out;
-};
-    var roundTo=function(num,digit){
-    if(digit===0){
-        return num;
-    }
-    else{
-        var n1=num*pow(10,digit);
-        var n2;
-        if(n1>=floor(n1)+0.5){
-            n2=ceil(n1);
-        }
-        else{
-            n2=floor(n1);
-        }
-        var n=n2/pow(10,digit);
-        if((n-floor(n)).toString().length>digit){
-            //println(0);
-           return n;
-        }
-        //println(pow(10,-digit));
-        return n;
-    }
-};
-    var contract=function(number){
-        if(number>=0){
-        return number<1000?number:number<1000000?roundTo(number/1000,1)+"K":number<1000000000?roundTo(number/1000000,1)+"M":roundTo(number/1000000000,1)+"B";
-        }
-        else{
-            return -number<1000?number:-number<1000000?roundTo(number/1000,1)+"K":-number<1000000000?roundTo(number/1000000,1)+"M":roundTo(number/1000000000,1)+"B";
-        }
-        
-    };
-    String.prototype.toTitleCase=function(){
-        var f=this.split(" ");
-        for(var i=0;i<f.length;i++){
-        f[i]=f[i][0].toUpperCase()+f[i].split("").splice(1,f[i].length-1).join("");
-        }
-    return f.join(" ");
-};
-    String.prototype.deQuote=function(){
-    var car=this;
-    if((this[0]==="\""&&this[this.length-1]==="\"")||(this[0]==="\'"&&this[this.length-1]==="\'")){
-        car=[];
-        for(var i=1;i<this.length-1;i++){
-            car.push(this[i]);
-        }
-        car=car.join("");
-    }
-    return car;
-};
-    var encryptData=function(input){
-    var car="";
-    var alphanumeric="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+={}[]|:;'<,>.? /-ΑΒΓΔΕΖΗΘΙͿΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ`";
-    alphanumeric["."]="\\";
-    var key=round(random(0,alphanumeric.length-10));
-    //var convert=function(inp){
-        if(typeof input=== typeof 0){
-            input=input.toString();
-            car="\"";
-            //println(floor(input/36));
-            for(var i=0;i<input.length;i++){
-                    car+=alphanumeric[alphanumeric.length-key-1-input[i]];
-                }
-            car+="~n~"+key+"\"";
-        }
-        else if(typeof input===typeof "a"){
-            car="\"";
-            key=round(random(0,alphanumeric.length-27));
-            for(var i=0;i<input.length;i++){
-                    for(var j=0;j<alphanumeric.length-1;j++){
-            if(alphanumeric[j]===input[i]){
-                    car+=j+key+"`";
-            }
-                }
-                }
-                car=car.split("");
-                car.splice(car.length-1,1);
-                car=car.join("");
-                car+="~s~"+key+"\"";
-        }
-        else if(typeof input===typeof true){
-            car='"'+alphanumeric[alphanumeric.length-key-1-input]+"~b~"+key+'"';
-        }
-        else if(input instanceof Array){
-            car+="[";
-            for(var i=0;i<input.length;i++){
-                car+=encryptData(input[i])+",";
-            }
-            car+="]";
-        }
-        else if(typeof input===typeof function(){}){
-            car="\"";
-                car+=encryptData(input.toString()+";").deQuote();
-            car+="\"";
-        }
-        else if(typeof input===typeof {}){
-            car+="{";
-            for(var i in input){
-                car+=encryptData(i)+":"+encryptData(input[i])+",";
-            }
-            car+="}";
-        }
-        //return inp;
-    //};'
-    //println(typeof input);
-    //input=carry;
-    return car;
-};
-    var decryptData=function(input){
-    var alphanumeric="`ΩΨΧΦΥΤΣΠΡΟΞΝΜΛΚͿΙΘΗΖΕΔΓΒΑ-/ ?.>,<';:|][}{=+_)(*&^%$#@!ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210";
-    var z;
-    var car="";
-    if(input instanceof Array){
-        car="[";
-        for(var i=0;i<input.length;i++){
-            car+=decryptData(input[i])+",";
-        }
-        car+="]";
-    }
-    else if(typeof input===typeof {}){
-            car+="{";
-            for(var i in input){
-                car+=decryptData(i)+":"+decryptData(input[i])+",";
-            }
-            car+="}";
-        }
-    else{
-        z=input.split("~");
-        if(z[1]==="n"){
-    input=z[0];
-    for(var i=0;i<input.length;i++){
-        if(input[i]+input[i+1]+input[i+2]+input[i+3]+input[i+4]+input[i+5]+input[i+6]+input[i+7]+input[i+8]+""==="undefined"){
-            i+=8;
-            car+=".";
-            continue;
-        }
-        for(var j=0;j<alphanumeric.length;j++){
-            if(alphanumeric[j]===input[i]){
-                    car+=j-z[2];
-            }
-                }
-    }
-    car=parseFloat(car);
-    }
-        else if(z[1]==="b"){
-        input=z[0];
-        for(var j=0;j<alphanumeric.length;j++){
-            if(alphanumeric[j]===input){
-                    car=j-z[2];
-            }
-                }
-        car=car===1?true:false;
-    }
-        else if(z[1]==="s"){
-        input=z[0];
-        var cars=z[0].split("`");
-        for(var i=0;i<cars.length;i++){
-            car+=alphanumeric[alphanumeric.length-(cars[i]-z[2]+1)];
-        }
-    }
-    }
-    
-    
-    //println(typeof car-0);
-    return car;
-    
-};
-    var start=function(){
-    this[["KAInfiniteLoopCount"]]=-Infinity;
-};
-    var neg=function(col){
-    return blendColor(color(255,255,255),col,SUBTRACT);
-};
-    var chooseRandom=function(array){
-    return array[floor(random(0,array.length))];
-};
-    Array.prototype.calcTotal=function(property,property2){
-    var g=0;
-    if(property2){
-        for(var i=0;i<this.length;i++){
-            if(this[i]&&this[i][property]){
-            g+=this[i][property][property2];
-            }
-        }
-    }
-    else if(property){
-        for(var i=0;i<this.length;i++){
-            if(this[i]){
-            g+=this[i][property];
-            }
-        }
-        
-    }
-    else{
-        for(var i=0;i<this.length;i++){
-            if(this[i]){
-            g+=this[i];
-            }
-        }
-    }
-    return g;
-};
-    Array.prototype.append=function(array){
-        if(array instanceof Array){
-            for(var i=0;i<array.length;i++){
-            this.push(array[i]);
-            }
-            return this;
-        }
-        else{
-            this.push(array);
-            return this;
-        }
-    };
-    start();
-//}//Utilities
+
 for(var i=0;i<100;i++){
     h=[];
     for(var j=0;j<10;j++){
@@ -3071,7 +3196,15 @@ if(ts_Save.length>0){
     for(var i=0;i<ts_Save.length;i++){
         ts[i]=new tool(ts_Save[i].type);
         for(var j in ts_Save[i]){
-            ts[i][j]=ts_Save[i][j];
+		if(j==="sheaths"){
+		ts[i][j]=[];
+		for(var k=0;k<ts_Save[i][j].length;k++){
+		ts[i][j].push(sheaths[ts_Save[i][j][k]]);
+		}
+		}
+		else{
+            	ts[i][j]=ts_Save[i][j];
+		}
         }
     }
 }
@@ -8392,6 +8525,7 @@ function game(){
                 strokeWeight(1);
     }
 }
+var clearTime=0;
 draw= function() {
     try{
         if(save_load===0){
@@ -8403,257 +8537,112 @@ draw= function() {
                     load();
                     break;
           }
+	
         }
         else{
             switch(save_load){
                 case 10:{
-                    println("//Copy this entire code and paste at the top of the code\nvar inv_Save=[");
+                    var $inv="[";
            for(var i=0;i<inventory.length;i++){
-               print("["+inventory[i][0]+","+inventory[i][1]+"],");
+               $inv+="["+inventory[i][0]+","+inventory[i][1]+"],";
            }
-           println("];");
+           		localStorage.setItem("inv_Save",$inv+"]");
                 }
                 break;
                 case 9:{
-                    println("var tlb_Save=[");
+
+                    var $tlb="[";
                     for(var i=0;i<toolbar.length;i++){
-               print("["+toolbar[i][0]+","+toolbar[i][1]+"],");
+               $tlb+="["+toolbar[i][0]+","+toolbar[i][1]+"],";
            }
-                    println("];");
+                    localStorage.setItem("tlb_Save",$tlb+"]");
                 }
                 break;
                 case 8:{
-                    println("var ts_Save=[");
+                    var $ts="[";
            for(var i=0;i<ts.length;i++){
-               print("{");
+               $ts+="{";
                for(var j in ts[i]){
                    if(j==="constructor"||j==="__id"){
                        continue;
                    }
                    if(j==="name"){
-                       print(j+":\""+ts[i][j]+"\",");
+                       $ts+=j+":"+ts[i][j]+",";
                    }
                    else if(j==="sheaths"){
-                       print(j+":[");
+                       $ts+=j+":[";
                        for(var k=0;k<ts[i][j].length;k++){
-                           print("sheaths["+sNames.indexOf(ts[i][j][k].name)+"],");
+                           $ts+=sNames.indexOf(ts[i][j][k].name)+",";
                            
                        }
-                       print("],");
+                       $ts+="],";
+                   }
+			else if(j==="durability"){
+                       $ts+=j+":"+ts[i][j];
                    }
                    else{
-                   print(j+":"+ts[i][j]+",");
+                   $ts+=j+":"+ts[i][j]+",";
                    }
                }
-               print("},");
+               $ts+="},";
            }
-           println("];\nvar xy_Save=["+player.x+","+player.y+","+player.rey+","+player.rex+"];");
+		localStorage.setItem("ts_Save",$ts+"]");
+           	localStorage.setItem("xy_Save","["+player.x+","+player.y+","+player.rey+","+player.rex+"]");
                 }
                 break;
                 case 7:{
-                    println("var world_Save=[");
-           for(var i=0;i<4;i++){
-               print("[");
+                    var $w="[";
+           for(var i=0;i<world.length;i++){
+               $w+="[";
                for(var j=0;j<world[i].length;j++){
                    if(world[i][j]===null){
-                       print(-1+",");
+                       $w+="-1,";
                    }
                    else{
                        if(world[i][j].type==="chest"||world[i][j].type==="sea chest"||world[i][j].type==="stone chest"){
-                           print("["+materials.indexOf(world[i][j].type)+",[");
+                           $w+="["+materials.indexOf(world[i][j].type)+",[";
                            for(var k=0;k<world[i][j].ref.materials.length;k++){
-                               print("[");
+                               $w+="[";
                                var m=world[i][j].ref.materials[k];
                                for(var l=0;l<m.length;l++){
-                               print("["+m[l][0]+","+m[l][1]+"],");
+                               $w+="["+m[l][0]+","+m[l][1]+"],";
                                }
-                               print("],");
+                               $w+="],";
                            }
-                           print("]],");
+                           $w+="]],";
                        }
                        else{
-                   print(materials.indexOf(world[i][j].type)+",");
+                   $w+=materials.indexOf(world[i][j].type)+",";
                        }
                    }
                }
-               println("],");
+               $w+="],";
            }
-           
+           	localStorage.setItem("world_Save",$w+"]");
                 }
                 break;
                 case 6:{
-                    for(var i=4;i<14;i++){
-               print("[");
-               for(var j=0;j<world[i].length;j++){
-                   if(world[i][j]===null){
-                       print(-1+",");
-                   }
-                   else{
-                       if(world[i][j].type==="chest"||world[i][j].type==="sea chest"||world[i][j].type==="stone chest"){
-                           print("["+materials.indexOf(world[i][j].type)+",[");
-                           for(var k=0;k<world[i][j].ref.materials.length;k++){
-                               print("[");
-                               var m=world[i][j].ref.materials[k];
-                               for(var l=0;l<m.length;l++){
-                               print("["+m[l][0]+","+m[l][1]+"],");
-                               }
-                               print("],");
-                           }
-                           print("]],");
-                       }
-                       else{
-                   print(materials.indexOf(world[i][j].type)+",");
-                       }
-                   }
-               }
-               println("],");
-           }
-                }
+                
+		}    
                 break;
                 case 5:{
-                    for(var i=14;i<24;i++){
-               print("[");
-               for(var j=0;j<world[i].length;j++){
-                   if(world[i][j]===null){
-                       print(-1+",");
-                   }
-                   else{
-                       if(world[i][j].type==="chest"||world[i][j].type==="sea chest"||world[i][j].type==="stone chest"){
-                           print("["+materials.indexOf(world[i][j].type)+",[");
-                           for(var k=0;k<world[i][j].ref.materials.length;k++){
-                               print("[");
-                               var m=world[i][j].ref.materials[k];
-                               for(var l=0;l<m.length;l++){
-                               print("["+m[l][0]+","+m[l][1]+"],");
-                               }
-                               print("],");
-                           }
-                           print("]],");
-                       }
-                       else{
-                   print(materials.indexOf(world[i][j].type)+",");
-                       }
-                   }
-               }
-               println("],");
-           }
-                }
+                
+		}    
                 break;
                 case 4:{
-                    for(var i=24;i<34;i++){
-               print("[");
-               for(var j=0;j<world[i].length;j++){
-                   if(world[i][j]===null){
-                       print(-1+",");
-                   }
-                   else{
-                       if(world[i][j].type==="chest"||world[i][j].type==="sea chest"||world[i][j].type==="stone chest"){
-                           print("["+materials.indexOf(world[i][j].type)+",[");
-                           for(var k=0;k<world[i][j].ref.materials.length;k++){
-                               print("[");
-                               var m=world[i][j].ref.materials[k];
-                               for(var l=0;l<m.length;l++){
-                               print("["+m[l][0]+","+m[l][1]+"],");
-                               }
-                               print("],");
-                           }
-                           print("]],");
-                       }
-                       else{
-                   print(materials.indexOf(world[i][j].type)+",");
-                       }
-                   }
-               }
-               println("],");
-           }
-                }
+                
+		}    
                 break;
                 case 3:{
-                    for(var i=34;i<44;i++){
-               print("[");
-               for(var j=0;j<world[i].length;j++){
-                   if(world[i][j]===null){
-                       print(-1+",");
-                   }
-                   else{
-                       if(world[i][j].type==="chest"||world[i][j].type==="sea chest"||world[i][j].type==="stone chest"){
-                           print("["+materials.indexOf(world[i][j].type)+",[");
-                           for(var k=0;k<world[i][j].ref.materials.length;k++){
-                               print("[");
-                               var m=world[i][j].ref.materials[k];
-                               for(var l=0;l<m.length;l++){
-                               print("["+m[l][0]+","+m[l][1]+"],");
-                               }
-                               print("],");
-                           }
-                           print("]],");
-                       }
-                       else{
-                   print(materials.indexOf(world[i][j].type)+",");
-                       }
-                   }
-               }
-               println("],");
-           }
-                }
+                
+		}    
                 break;
                 case 2:{
-                    for(var i=44;i<54;i++){
-               print("[");
-               for(var j=0;j<world[i].length;j++){
-                   if(world[i][j]===null){
-                       print(-1+",");
-                   }
-                   else{
-                       if(world[i][j].type==="chest"||world[i][j].type==="sea chest"||world[i][j].type==="stone chest"){
-                           print("["+materials.indexOf(world[i][j].type)+",[");
-                           for(var k=0;k<world[i][j].ref.materials.length;k++){
-                               print("[");
-                               var m=world[i][j].ref.materials[k];
-                               for(var l=0;l<m.length;l++){
-                               print("["+m[l][0]+","+m[l][1]+"],");
-                               }
-                               print("],");
-                           }
-                           print("]],");
-                       }
-                       else{
-                   print(materials.indexOf(world[i][j].type)+",");
-                       }
-                   }
-               }
-               println("],");
-           }
-                }
+                
+		}    
                 break;
                 case 1:{
-                    for(var i=54;i<world.length;i++){
-               print("[");
-               for(var j=0;j<world[i].length;j++){
-                   if(world[i][j]===null){
-                       print(-1+",");
-                   }
-                   else{
-                       if(world[i][j].type==="chest"||world[i][j].type==="sea chest"||world[i][j].type==="stone chest"){
-                           print("["+materials.indexOf(world[i][j].type)+",[");
-                           for(var k=0;k<world[i][j].ref.materials.length;k++){
-                               print("[");
-                               var m=world[i][j].ref.materials[k];
-                               for(var l=0;l<m.length;l++){
-                               print("["+m[l][0]+","+m[l][1]+"],");
-                               }
-                               print("],");
-                           }
-                           print("]],");
-                       }
-                       else{
-                   print(materials.indexOf(world[i][j].type)+",");
-                       }
-                   }
-               }
-               println("],");
-           }
-                    println("];");
+                    println("Saved!");
                 }
                 break;
             }
@@ -8661,6 +8650,10 @@ draw= function() {
         }
     mouseIsClicked=false;
     keyIsPressed=false;
+	if(clearTime>0){
+	fill(255,0,0);
+		arc(300,300,100,100,0,(clearTime/200)*PI*2);
+	}
     }
     catch(e){
         println(e);
@@ -8697,9 +8690,20 @@ keyPressed=function(){
            save_load=10;
            
        }
+	else if(keyCode===220){
+		
+		clearTime++;
+		if(clearTime>=200){
+		localStorage.clear();
+		document.location.reload();
+	}
+	}
        keyIsPressed=true;
 }
 keyReleased=function(){
+	if(keyCode===220){
+		clearTime=0;
+	}
     keys[keyCode]=false;
 }
 //}
