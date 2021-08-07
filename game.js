@@ -8695,7 +8695,7 @@ keyPressed=function(){
 		clearTime++;
 		if(clearTime>=200){
 		localStorage.clear();
-		document.location.reload();
+		window.location.reload();
 	}
 	}
        keyIsPressed=true;
