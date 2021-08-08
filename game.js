@@ -511,7 +511,7 @@ for(var i=0;i<xy_Save.length;i++){
 }
 var world_Save=(localStorage.getItem("world_Save").length>0?stringArray(localStorage.getItem("world_Save")):[]);
 for(var i=0;i<world_Save.length;i++){
-	println(world_Save[i]);
+	//println(world_Save[i]);
 	world_Save[i]=stringArray(world_Save[i]);
 	for(var j=0;j<world_Save[i].length;j++){
 		world_Save[i][j]=parse(world_Save[i][j]);
