@@ -5968,10 +5968,16 @@ var createOSegment=function(q,j,i){
                 if(osections[q][l][k]!==" "){
                     if(world[j+l]){
                 world[j+l].push(new block((i+k)*30,(j+l)*30,materials[osections[q][l][k]],0));
-                    if(world[j+l][world[j+l].length-1].type==="chest"){
+                    if(world[j+l][world[j+l].length-1].type==="chest"||world[j+l][world[j+l].length-1].type==="stone chest"||world[j+l][world[j+l].length-1].type==="sea chest"){
                         var c=world[j+l][world[j+l].length-1];
                         if(c.type==="chest"){
                             c.ref=new chest(1);
+                        }
+			else if(c.type==="stone chest"){
+                            c.ref=new chest(2);
+                        }
+			else if(c.type==="sea chest"){
+                            c.ref=new chest(3);
                         }
                     }
                     }
