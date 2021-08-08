@@ -520,7 +520,10 @@ for(var i=0;i<world_Save.length;i++){
 			world_Save[i][j][1]=stringArray(world_Save[i][j][1]);
 			for(var k=0;k<world_Save[i][j][1].length;k++){
 				world_Save[i][j][1][k]=stringArray(world_Save[i][j][1][k]);
-				world_Save[i][j][1][k]=[parseFloat(world_Save[i][j][1][k][0]),parseFloat(world_Save[i][j][1][k][1])];
+				for(var l=0;l<world_Save[i][j][1][k].length;l++){
+					world_Save[i][j][1][k][l]=stringArray(world_Save[i][j][1][k][l]);
+					world_Save[i][j][1][k][l]=[parse(world_Save[i][j][1][k][l][0]),parse(world_Save[i][j][1][k][l][1])];
+				}
 			}
 		}
 	}
