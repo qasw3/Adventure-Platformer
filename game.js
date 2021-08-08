@@ -515,10 +515,11 @@ for(var i=0;i<world_Save.length;i++){
 	for(var j=0;j<world_Save[i].length;j++){
 		world_Save[i][j]=parse(world_Save[i][j]);
 		if(world_Save[i][j] instanceof Array){
+			world_Save[i][j][0]=parse(world_Save[i][j][0]);
 			world_Save[i][j][1]=stringArray(world_Save[i][j][1]);
 			for(var k=0;k<world_Save[i][j][1].length;k++){
 				world_Save[i][j][1][k]=stringArray(world_Save[i][j][1][k]);
-				world_Save[i][j][1][k]=[parse(world_Save[i][j][1][k][0]),parse(world_Save[i][j][1][k][1])];
+				world_Save[i][j][1][k]=[parseFloat(world_Save[i][j][1][k][0]),parseFloat(world_Save[i][j][1][k][1])];
 			}
 		}
 	}
