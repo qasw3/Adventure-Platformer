@@ -268,7 +268,7 @@ var stringObject=function(input){
     while(i!=="}"){
         var q=i;
         
-        if(labeling){
+        if(labeling&&input[q]!=="}"){
         while(input[q]!==":"){
             label+=input[q];
             q++;
