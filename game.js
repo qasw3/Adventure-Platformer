@@ -281,8 +281,24 @@ var stringObject=function(input){
             while(input[q]!==","&&input[q]!=="}"){
                 if(input[q]==="["){
                     while(input[q]!=="]"){
+                        if(input[q]==="["){
+                    while(input[q]!=="]"){
+                        if(input[q]==="["){
+                    while(input[q]!=="]"){
                         value+=input[q];
             q++;
+                    }
+                }
+                else{
+            value+=input[q];
+            q++;
+                }
+                    }
+                }
+                else{
+            value+=input[q];
+            q++;
+                }
                     }
                 }
                 else{
