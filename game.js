@@ -6061,10 +6061,13 @@ function game(){
         blocks=[];
         enemies=[];
         blockNum=0;
+	if(player.health<=0){
         player.health=100;
         //player.x=player.rex;
         //player.y=player.rey;
         player.hunger=200;
+	player.oxygen=1000;
+	}
         levelStart=false;
     }
     if(inv||chst||fnc||crush||anv||found||brew){
