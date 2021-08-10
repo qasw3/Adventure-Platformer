@@ -16,6 +16,9 @@ if(localStorage.getItem("xy_Save")===null){
 if(localStorage.getItem("world_Save")===null){
 	localStorage.setItem("world_Save","");
 }
+if(localStorage.getItem("stats_Save")===null){
+	localStorage.setItem("stats_Save","");
+}	     
 var difficulty=5;//0-10
 //{
 var sheaths=[
@@ -543,6 +546,10 @@ for(var i=0;i<world_Save.length;i++){
 			}
 		}
 	}
+}
+var stats_Save=(localStorage.getItem("stats_Save").length>0?stringArray(localStorage.getItem("stats_Save")):[]);
+for(var i=0;i<stats_Save.length;i++){
+	stats_Save[i]=parseFloat(stats_Save[i]);
 }
 //{
 var scene="load";
@@ -3540,12 +3547,12 @@ player={
     ySpeed:0,
     grav:0.15,
     canJump:true,
-    health:100,
+    health:stats_Save[0]||100,
     equipped:0,
     canPlace:[],
     potions:[],
-    hunger:100,
-    oxygen:1000,
+    hunger:stats_Save[1]||100,
+    oxygen:stats_Save[2]||1000,
     strength:false,
     inVehicle:false,
     vehicle:null,
@@ -8649,7 +8656,7 @@ draw= function() {
                 }
                 break;
                 case 6:{
-                
+                localStorage.setItem("stats_Save","["+player.health+","+player.hunger+","+player.oxygen+"]");
 		}    
                 break;
                 case 5:{
