@@ -1,0 +1,90 @@
+     AAA   DDDD   V   V  EEEEE  N   N  TTTTT  U   U  RRRR   EEEEE
+    A   A  D   D  V   V  E      NN  N    T    U   U  R   R  E
+    AAAAA  D   D  V   V  EEEEE  N N N    T    U   U  RRRR   EEEEE
+    A   A  D   D   V V   E      N  NN    T    U   U  R  R   E
+    A   A  DDDD     V    EEEEE  N   N    T     UUU   R   R  EEEEE
+    
+PPPP   L      AAA  TTTTT  FFFFF   OOO   RRRR   M   M  EEEEE  RRRR
+P   P  L     A   A   T    F      O   O  R   R  MM MM  E      R   R
+PPPP   L     AAAAA   T    FFFFF  O   O  RRRR   M M M  EEEEE  RRRR
+P      L     A   A   T    F      O   O  R  R   M   M  E      R  R
+P      LLLLL A   A   T    F       OOO   R   R  M   M  EEEEE  R   R
+
+    My biggest game yet!
+    
+    Adventure Platformer is a game that is loosely based on Minecraft, but with some modifications
+    
+    When you save your progress, it saves to localStorage, so you do not need to copy and paste a save file
+    
+    Since this game uses JS libraries, it is unhackable. If you want to tamper with the code, there is a PJS version of Adventure Platformer at khanacademy.org/cs/a/5866178708455424
+    
+    This game will have long-term support. To be notified when there are updates, post a single "." in the thread in the T&T
+    
+    Art created with khanacademy.org/cs/a/5513162661314560
+    
+    Guide for crafting, smelting, crushing, founding, and brewing:
+    khanacademy.org/cs/a/6113460142686208
+
+    How to Play:
+        
+        Controls:
+        
+            General:
+            Arrow Keys to move
+            WASD to mine (if selected on the toolbar is a tool or fist)
+            S&D to open chest, furnace, crusher, foundry, anvil, and brewing stand (if selected on the toolbar is not a tool)
+            SHIFT+WASD to place a block
+            DOWN to sprint
+            SPACEBAR to hit with a weapon or fist 
+            SPACEBAR to eat (if selected on the toolbar is edible)
+            SPACEBAR to drink a potion
+            E to open inventory
+            ENTER to save
+            Hold \ to erase save file. After erasing save file, you will need to reload the page
+            
+            Inventory: 
+            Left click to select an item, move a stack to the toolbar, or place a single one of the selected item in the crafting grid
+            Center click on the crafting grid to move an entire stack
+            Right click on the crafting grid or toolbar to move a stack back to the inventory
+            E to exit inventory
+            
+            Chest:
+            Works like inventory
+            
+            Furnace:
+            Controls like inventory
+            Place a block that can burn in the "fuel" spot to add fuel
+            
+            Crusher:
+            Controls like inventory
+            Place a block in the first spot, and then put another block of the type required in the "fuel" spot
+            
+            Foundry:
+            Works like inventory
+            
+            Anvil:
+            Controls like inventory
+            Put a tool in the first spot, a sheath in the second spot (optional), and a hammer in the third spot
+            
+            Brewing Stand:
+            Works like inventory
+            Put a stack of water flasks in the spot above the arrow
+        
+        Other Information:
+        A bed sets your spawn point when you place it, and if you have multiple beds, you can set your spawn point to any one of them by pressing SPACEBAR while standing in it
+        A portal teleports you back to your spawn point
+        Movers only work on normal chests, not stone chests or sea chests
+        Fish eggs and shark eggs will spawn fish and sharks, respectively, when placed in water
+        Wolves will not attack you until attacked
+        
+If you want to know about anything else, ask in the "Questions"
+
+If there is anything that you want me to improve or add, tell me in the T&T, and I might add it
+
+    CREDITS:
+    
+    Many of the basic gameplay features based on Minecraft
+    Feagles are from Terry Pratchett's Diskworld books
+    Gauls are from Goscinny and Uderzo's Asterix books
+    
+    ALL CODE IS ORIGINAL
