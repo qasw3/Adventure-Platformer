@@ -991,6 +991,12 @@ var art=[
     [
         [0,0,0,0,0,3,3,3,3,3,0,0,0,0,0],[0,0,0,3,3,2,2,2,2,2,3,3,0,0,0],[0,0,3,2,2,2,1,1,1,2,2,2,3,0,0],[0,3,2,2,1,1,1,42,1,1,1,2,2,3,0],[0,3,2,1,1,42,42,42,42,42,1,1,2,3,0],[3,2,2,1,42,42,5,5,5,42,42,1,2,2,3],[3,2,1,1,42,5,5,6,5,5,42,1,1,2,3],[3,2,1,42,42,5,6,6,6,5,42,42,1,2,3],[3,2,1,1,42,5,5,6,5,5,42,1,1,2,3],[3,2,2,1,42,42,5,5,5,42,42,1,2,2,3],[0,3,2,1,1,42,42,42,42,42,1,1,2,3,0],[0,3,2,2,1,1,1,42,1,1,1,2,2,3,0],[0,0,3,2,2,2,1,1,1,2,2,2,3,0,0],[0,0,0,3,3,2,2,2,2,2,3,3,0,0,0],[0,0,0,0,0,3,3,3,3,3,0,0,0,0,0],
         ],
+    [
+	    [29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[0,0,0,0,0,0,0,3,3,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	    ],
+    [
+	    [29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[30,30,30,30,30,30,30,3,3,30,30,30,30,30,30],[29,29,29,29,29,29,29,3,3,29,29,29,29,29,29],[29,29,29,29,29,29,29,29,29,29,29,29,29,29,29],[30,30,30,30,30,30,30,30,30,30,30,30,30,30,30],
+	    ],
     ];
     art[-1]=[
         
@@ -1933,17 +1939,17 @@ var worldHeight=sections[0].length;
         oRight[j]=oRight[j].split(",");
     }
 var materials=[
-    "dirt","wood","sand","glue block","water","lava","stone","leaves","stick","coal","coal block","iron","iron block","gold","gold block","diamond","diamond block","copper","copper block","tin","tin block","rouguetite","rouguetite block","ladder","water drop","lava drop","venom","iron ore","gold ore","diamond ore","copper ore","tin ore","rouguetite ore","coal ore","glue","mystery","gspawner","xspawner","chest","rubber","seed","copper wire","gold wire","gold power block","copper power block","pole","berethite","furnace","glass","anvil","crusher","foundry","oil","oil shale","shale","fspawner","sspawner","spiderweb","grossstuffyoudontwanttoknowwhatitis","guard head","gaul head","feagle head","spider head","string","empty flask","compact stone","ironwood","ironwood shard","ironwood block","charred ironwood","firepowder","transformer","copper repeater","gold repeater","switch","switch (on)","switch (off)","rubber block","water flask","cannonball","cannon","cannon (left)","cannon (up)","right mover","left mover","up mover","down mover","wool","cowhide","leather","fang","raw bacon","cooked bacon","raw mutton","cooked mutton","raw steak","cooked steak","roasted seed","crushed seed","husk","fish eggs","raw fish","cooked fish","scale","piston","piston (right)","piston (down)","piston (left)","arm (up)","arm (right)","arm (down)","arm (left)","ext (up)","ext (right)","ext (down)","ext (left)","transistor block","pressure plate","capacitor","wall splitter","electric wall","electric wall (horizontal)","circuit breaker","hardstone","glitter","glitter glue","brewing stand","boat","sea chest","stone chest","teleporter","bed","shark eggs","eye"
+    "dirt","wood","sand","glue block","water","lava","stone","leaves","stick","coal","coal block","iron","iron block","gold","gold block","diamond","diamond block","copper","copper block","tin","tin block","rouguetite","rouguetite block","ladder","water drop","lava drop","venom","iron ore","gold ore","diamond ore","copper ore","tin ore","rouguetite ore","coal ore","glue","mystery","gspawner","xspawner","chest","rubber","seed","copper wire","gold wire","gold power block","copper power block","pole","berethite","furnace","glass","anvil","crusher","foundry","oil","oil shale","shale","fspawner","sspawner","spiderweb","grossstuffyoudontwanttoknowwhatitis","guard head","gaul head","feagle head","spider head","string","empty flask","compact stone","ironwood","ironwood shard","ironwood block","charred ironwood","firepowder","transformer","copper repeater","gold repeater","switch","switch (on)","switch (off)","rubber block","water flask","cannonball","cannon","cannon (left)","cannon (up)","right mover","left mover","up mover","down mover","wool","cowhide","leather","fang","raw bacon","cooked bacon","raw mutton","cooked mutton","raw steak","cooked steak","roasted seed","crushed seed","husk","fish eggs","raw fish","cooked fish","scale","piston","piston (right)","piston (down)","piston (left)","arm (up)","arm (right)","arm (down)","arm (left)","ext (up)","ext (right)","ext (down)","ext (left)","transistor block","pressure plate","capacitor","wall splitter","electric wall","electric wall (horizontal)","circuit breaker","hardstone","glitter","glitter glue","brewing stand","boat","sea chest","stone chest","teleporter","bed","shark eggs","eye","door","door (open)"
     ];
 var fuel=[
-    0,2,0,0,0,0,0,1,1,5,50,0,0,0,0,10,100,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,1,0,0,0,0,0,0,7,0,0,0,100,1,0,0,0,0,0,1,0,0,5,1,100,500,2000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,10,0,0,0,0,0,0,0,1,2,4,0,0,0,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,5,0,0,0,100,0
+    0,2,0,0,0,0,0,1,1,5,50,0,0,0,0,10,100,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,1,0,0,0,0,0,0,7,0,0,0,100,1,0,0,0,0,0,1,0,0,5,1,100,500,2000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,10,0,0,0,0,0,0,0,1,2,4,0,0,0,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100,5,0,0,0,100,0,3,3
     ];
 materials[-1]="inv";
 var placeable=[
-    true,true,true,true,true,true,true,false,false,false,true,false,true,false,true,false,true,false,true,false,true,false,true,true,false,false,false,true,true,false,true,true,false,false,false,true,true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,false,true,true,true,true,true,false,false,false,false,false,false,false,true,false,false,true,true,false,false,true,true,true,true,true,true,false,false,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,true,true,true,true,true,true,true,false
+    true,true,true,true,true,true,true,false,false,false,true,false,true,false,true,false,true,false,true,false,true,false,true,true,false,false,false,true,true,false,true,true,false,false,false,true,true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,false,true,true,true,true,true,false,false,false,false,false,false,false,true,false,false,true,true,false,false,true,true,true,true,true,true,false,false,true,true,true,true,true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,true,false,false,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,true,true,true,true,true,true,true,false,true,false
     ];
 var food=[
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.5,3,2,4,3,6,2,4,0,1,2,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.5,3,2,4,3,6,2,4,0,1,2,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
     ];
 var inventory=[];
 if(inv_Save.length>0){
@@ -2133,8 +2139,15 @@ for(var i=0;i<100;i++){
  131:bed
  132:shark eggs
  133:eye
+ 134:door
  **/
 var tRecipies=[
+	{
+            req:[
+                [1,1,1,1,11,1,1,1,1],
+                    ],
+            ret:[134,1]
+        },//Door
         {
             req:[
                 [11,11,123,64,70,123,11,11,123],
@@ -3623,7 +3636,12 @@ function fish(x,y,type){
 }
 shard.prototype.draw= function() {
     if(this.type[1]>0){
-    image(graphics[this.type[0]],this.x,this.y,20,20);
+	if(this.type[0]===134){
+	    image(graphics[135],this.x,this.y,20,20);
+	}
+	else{
+            image(graphics[this.type[0]],this.x,this.y,20,20);
+	}
     }
     else if(this.type[1]===-1){
         image(toolGs[ts[this.type[0]].type],this.x,this.y,20,20);
@@ -4285,6 +4303,20 @@ function block(x,y,type,motion,dir){
         this.durability=2;
     }
         break;
+    case "door":{
+        this.solid=true;
+        this.minable=2.1;
+        this.durability=4;
+	this.w=10;
+    }
+        break;
+    case "door (open)":{
+        this.solid=false;
+        this.minable=2.1;
+        this.durability=4;
+	this.drops=[{type:134,num:1}];
+    }
+        break;
     case "arm (up)":{
         this.solid=true;
         this.drops=[];
@@ -4637,7 +4669,7 @@ block.prototype.draw= function() {
     }
         }
         else{
-    image(graphics[materials.indexOf(this.type)],this.x,this.y,this.w,this.h);
+    image(graphics[materials.indexOf(this.type)],this.x,this.y,this.type==="door"?this.h:this.w,this.h);
     if(this.burning){
         image(graphics[-7],this.x,this.y-30,this.w,this.h);
         this.health-=0.125/fuel[materials.indexOf(this.type)];
@@ -6515,6 +6547,14 @@ function game(){
                 chst=true;
                 ref=world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].ref;
             }
+	    else if(world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].type==="door"&&toolbar[player.equipped][1]!==-1){
+                world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1]=new block(world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].x,world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].y,"door (open)");
+		keys[65]=false;
+            }
+	    else if(world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].type==="door (open)"&&toolbar[player.equipped][1]!==-1){
+                world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1]=new block(world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].x,world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].y,"door");
+		keys[65]=false;
+            }
             else if(world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].type==="furnace"&&toolbar[player.equipped][1]!==-1){
                 fnc=true;
                 ref=world[floor((player.y+player.h/2)/30)][floor((player.x)/30)-1].ref;
@@ -6612,6 +6652,14 @@ function game(){
             if((world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].type==="chest"||world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].type==="stone chest"||world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].type==="sea chest")&&toolbar[player.equipped][1]!==-1){
                 chst=true;
                 ref=world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].ref;
+            }
+	    else if(world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].type==="door"&&toolbar[player.equipped][1]!==-1){
+                world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1]=new block(world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].x,world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].y,"door (open)");
+		keys[68]=false;
+            }
+	    else if(world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].type==="door (open)"&&toolbar[player.equipped][1]!==-1){
+                world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1]=new block(world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].x,world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].y,"door");
+		keys[68]=false;
             }
             else if(world[floor((player.y+player.h/2)/30)][floor((player.x+player.w)/30)+1].type==="furnace"&&toolbar[player.equipped][1]!==-1){
                 fnc=true;
@@ -6773,7 +6821,7 @@ function game(){
             strokeWeight(1);
             if(toolbar[i][0]>-1){
                 if(toolbar[i][1]>=0){
-                    new block(i*60+15,555,materials[toolbar[i][0]],1).draw();
+                    new block(i*60+15,555,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect(i*60+15,565,30,10);
@@ -6895,7 +6943,7 @@ function game(){
             }
             if(inventory[i][0]!==-1){
                 if(inventory[i][1]>0){
-            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),materials[inventory[i][0]],1).draw();
+            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),inventory[i][0]===134?materials[135]:materials[inventory[i][0]],1).draw();
             if(inventory[i][1]>1){
             fill(255);
             rect((i%10-k)*50+60,65+5+(floor(i/10)*50),30,10);
@@ -6926,7 +6974,7 @@ function game(){
             rect(50+i*50,500,50,50);
             if(toolbar[i][0]!==-1){
                 if(toolbar[i][1]>0){
-            new block((i)*50+60,510,materials[toolbar[i][0]],1).draw();
+            new block((i)*50+60,510,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect((i)*50+60,520,30,10);
@@ -7139,7 +7187,7 @@ function game(){
             }
             if(inventory[i][0]!==-1){
                 if(inventory[i][1]>0){
-            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),materials[inventory[i][0]],1).draw();
+            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),inventory[i][0]===134?materials[135]:materials[inventory[i][0]],1).draw();
             if(inventory[i][1]>1){
             fill(255);
             rect((i%10-k)*50+60,65+5+(floor(i/10)*50),30,10);
@@ -7170,7 +7218,7 @@ function game(){
             rect(50+i*50,500,50,50);
             if(toolbar[i][0]!==-1){
                 if(toolbar[i][1]>0){
-            new block((i)*50+60,510,materials[toolbar[i][0]],1).draw();
+            new block((i)*50+60,510,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect((i)*50+60,520,30,10);
@@ -7361,7 +7409,7 @@ function game(){
             }
             if(inventory[i][0]!==-1){
                 if(inventory[i][1]>0){
-            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),materials[inventory[i][0]],1).draw();
+            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),inventory[i][0]===134?materials[135]:materials[inventory[i][0]],1).draw();
             if(inventory[i][1]>1){
             fill(255);
             rect((i%10-k)*50+60,65+5+(floor(i/10)*50),30,10);
@@ -7392,7 +7440,7 @@ function game(){
             rect(50+i*50,500,50,50);
             if(toolbar[i][0]!==-1){
                 if(toolbar[i][1]>0){
-            new block((i)*50+60,510,materials[toolbar[i][0]],1).draw();
+            new block((i)*50+60,510,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect((i)*50+60,520,30,10);
@@ -7479,7 +7527,7 @@ function game(){
                     for(var j=0;j<ref.materials[i].length;j++){
                     var g=ref.materials[i][j];
                 if(g[0]!==-1){
-                    new block((i%10-k)*50+60,325+5+(floor(j)*50),materials[g[0]],1).draw();
+                    new block((i%10-k)*50+60,325+5+(floor(j)*50),g[0]===134?materials[135]:materials[g[0]],1).draw();
                     if(g[1]>1){
                     fill(255);
                     rect((i%10-k)*50+60,335+5+(floor(j)*50),30,10);
@@ -7546,7 +7594,7 @@ function game(){
             }
             if(inventory[i][0]!==-1){
                 if(inventory[i][1]>0){
-            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),materials[inventory[i][0]],1).draw();
+            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),inventory[i][0]===134?materials[135]:materials[inventory[i][0]],1).draw();
             if(inventory[i][1]>1){
             fill(255);
             rect((i%10-k)*50+60,65+5+(floor(i/10)*50),30,10);
@@ -7577,7 +7625,7 @@ function game(){
             rect(50+i*50,500,50,50);
             if(toolbar[i][0]!==-1){
                 if(toolbar[i][1]>0){
-            new block((i)*50+60,510,materials[toolbar[i][0]],1).draw();
+            new block((i)*50+60,510,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect((i)*50+60,520,30,10);
@@ -7826,7 +7874,7 @@ function game(){
             }
             if(inventory[i][0]!==-1){
                 if(inventory[i][1]>0){
-            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),materials[inventory[i][0]],1).draw();
+            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),inventory[i][0]===134?materials[135]:materials[inventory[i][0]],1).draw();
             if(inventory[i][1]>1){
             fill(255);
             rect((i%10-k)*50+60,65+5+(floor(i/10)*50),30,10);
@@ -7857,7 +7905,7 @@ function game(){
             rect(50+i*50,500,50,50);
             if(toolbar[i][0]!==-1){
                 if(toolbar[i][1]>0){
-            new block((i)*50+60,510,materials[toolbar[i][0]],1).draw();
+            new block((i)*50+60,510,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect((i)*50+60,520,30,10);
@@ -8069,7 +8117,7 @@ function game(){
             }
             if(inventory[i][0]!==-1){
                 if(inventory[i][1]>0){
-            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),materials[inventory[i][0]],1).draw();
+            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),inventory[i][0]===134?materials[135]:materials[inventory[i][0]],1).draw();
             if(inventory[i][1]>1){
             fill(255);
             rect((i%10-k)*50+60,65+5+(floor(i/10)*50),30,10);
@@ -8100,7 +8148,7 @@ function game(){
             rect(50+i*50,500,50,50);
             if(toolbar[i][0]!==-1){
                 if(toolbar[i][1]>0){
-            new block((i)*50+60,510,materials[toolbar[i][0]],1).draw();
+            new block((i)*50+60,510,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect((i)*50+60,520,30,10);
@@ -8315,7 +8363,7 @@ function game(){
             }
             if(inventory[i][0]!==-1){
                 if(inventory[i][1]>0){
-            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),materials[inventory[i][0]],1).draw();
+            new block((i%10-k)*50+60,55+5+(floor(i/10)*50),inventory[i][0]===134?materials[135]:materials[inventory[i][0]],1).draw();
             if(inventory[i][1]>1){
             fill(255);
             rect((i%10-k)*50+60,65+5+(floor(i/10)*50),30,10);
@@ -8346,7 +8394,7 @@ function game(){
             rect(50+i*50,500,50,50);
             if(toolbar[i][0]!==-1){
                 if(toolbar[i][1]>0){
-            new block((i)*50+60,510,materials[toolbar[i][0]],1).draw();
+            new block((i)*50+60,510,toolbar[i][0]===134?materials[135]:materials[toolbar[i][0]],1).draw();
             if(toolbar[i][1]>1){
             fill(255);
             rect((i)*50+60,520,30,10);
